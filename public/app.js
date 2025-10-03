@@ -9,7 +9,7 @@ const colors = {
 let productsData = [];
 
 async function fetchProducts() {
-    const res = await fetch("http://localhost:5000/products");
+    const res = await fetch("/products");
     productsData = await res.json();
     renderProducts(productsData);
 }
