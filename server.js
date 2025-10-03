@@ -7,7 +7,6 @@ const path = require("path");
 const app = express();
 app.use(cors());
 
-
 const PORT = process.env.PORT || 5000;
 const products = JSON.parse(fs.readFileSync("products.json", "utf8"));
 
@@ -33,7 +32,7 @@ app.get("/products", async (req, res) => {
 
   const enrichedProducts = products.map(p => ({
     ...p,
-    price: parseFloat(((p.popularityScore + 1) * p.weight * goldPrice).toFixed(2)),
+    price: parseFloat(((p.popularityScore) * p.weight * goldPrice).toFixed(2)),
     popularity: parseFloat((p.popularityScore * 5).toFixed(1)),
   }));
 
