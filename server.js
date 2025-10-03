@@ -2,11 +2,13 @@ const express = require("express");
 const axios = require("axios");
 const cors = require("cors");
 const fs = require("fs");
+const path = require("path");
 
 const app = express();
 app.use(cors());
 
-const PORT = 5000;
+
+const PORT = process.env.PORT || 5000;
 const products = JSON.parse(fs.readFileSync("products.json", "utf8"));
 
 const API_KEY = "6b3c5986d2e0b191dd89155170f4edc3";
@@ -38,6 +40,13 @@ app.get("/products", async (req, res) => {
   res.json(enrichedProducts);
 });
 
+
+app.use(express.static(path.join(__dirname, "public")));
+
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
+});
+
 app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+  console.log(`Server is running on port ${PORT}`);
 });
