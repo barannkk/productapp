@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Listing</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="header-container">
+    <h1>Product List</h1>
+  </div>
+  
+  <div class="controls-container">
+    <div class="sort-container">
+      <label for="sortSelect">Sort by:</label>
+      <select id="sortSelect">
+        <option value="">Select</option>
+        <option value="priceAsc">Price: Low to High</option>
+        <option value="priceDesc">Price: High to Low</option>
+        <option value="popularityAsc">Popularity: Low to High</option>
+        <option value="popularityDesc">Popularity: High to Low</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="carousel-container">
+    <button class="carousel-control prev-control" id="prev-btn">&lt;</button>
+    <button class="carousel-control next-control" id="next-control">&gt;</button>
+    <div class="product-list" id="product-list"></div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
