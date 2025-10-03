@@ -126,8 +126,11 @@ let scrollStart;
 
 
 productList.addEventListener('pointerdown', (e) => {
-
+    
     if (e.target.closest('button')) {
+        return; 
+    }
+    if (e.pointerType === 'touch') {
         return; 
     }
     
@@ -145,6 +148,7 @@ productList.addEventListener('pointermove', (e) => {
 });
 
 productList.addEventListener('pointerup', (e) => {
+    if(!isDragging) return;
     isDragging = false;
     productList.releasePointerCapture(e.pointerId);
 });
