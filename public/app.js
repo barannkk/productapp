@@ -124,11 +124,11 @@ let isDragging = false;
 let startX;
 let scrollStart;
 
-// *** DÜZELTME BURADA: Eğer tıklanan element bir düğme (button) ise kaydırma başlatılmaz. ***
+
 productList.addEventListener('pointerdown', (e) => {
-    // Tıklanan elementin veya bir üst elementinin 'button' olup olmadığını kontrol et
+
     if (e.target.closest('button')) {
-        return; // Düğmeye tıklandıysa kaydırma işlemini başlatma
+        return; 
     }
     
     e.preventDefault(); 
