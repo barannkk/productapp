@@ -120,6 +120,35 @@ if (productList && prevBtn && nextBtn) {
     setTimeout(checkScroll, 500);
 }
 
+let isDragging = false;
+let startX;
+let scrollStart;
+
+// *** DÜZELTME BURADA: Eğer tıklanan element bir düğme (button) ise kaydırma başlatılmaz. ***
+productList.addEventListener('pointerdown', (e) => {
+    // Tıklanan elementin veya bir üst elementinin 'button' olup olmadığını kontrol et
+    if (e.target.closest('button')) {
+        return; // Düğmeye tıklandıysa kaydırma işlemini başlatma
+    }
+    
+    e.preventDefault(); 
+    isDragging = true;
+    startX = e.pageX;
+    scrollStart = productList.scrollLeft;
+    productList.setPointerCapture(e.pointerId);
+});
+
+productList.addEventListener('pointermove', (e) => {
+    if(!isDragging) return;
+    const delta = e.pageX - startX;
+    productList.scrollLeft = scrollStart - delta;
+});
+
+productList.addEventListener('pointerup', (e) => {
+    isDragging = false;
+    productList.releasePointerCapture(e.pointerId);
+});
+
 document.getElementById("sortSelect").addEventListener("change", (e) => {
     let sorted = [...productsData];
     switch(e.target.value) {
